@@ -4,6 +4,7 @@ OpenMS 2.0.0 Release
 Ubuntu 14.04
 Docker 1.13.1
 Dockerfile: https://github.com/dmccloskey/docker_openms/Dockerfile
+Dockerfile version: 40c0475 master
 Error: https://github.com/dmccloskey/docker_openms/pyOpenMS/pyopenms_error
 
 

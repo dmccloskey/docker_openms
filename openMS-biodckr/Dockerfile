@@ -73,7 +73,12 @@ RUN cmake -DCMAKE_PREFIX_PATH="/home/biodocker/contrib-build/;/home/biodocker/co
 ENV PATH /home/biodocker/openms-build/bin/:$PATH
 
 # Install pyopenms
-RUN easy_install pyopenms
+#RUN pip install --no-cache-dir \
+#    numpy \ 
+#    pyopenms \ 
+#    && pip install --upgrade
+RUN easy_install numpy \
+    &&easy_install pyopenms
 
 # Change user to back to biodocker
 USER biodocker
