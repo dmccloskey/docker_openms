@@ -1,6 +1,13 @@
+SYSTEM INFORMATION:
+64 bit
+OpenMS 2.0.0 Release
+Ubuntu 14.04
+Docker 1.13.1
+Dockerfile: https://github.com/dmccloskey/docker_openms/Dockerfile
+Error: https://github.com/dmccloskey/docker_openms/pyOpenMS/pyopenms_error
 
 
-
+ERROR REPORT FROM BUILD:
 ...
 INFO:root:create wrapper for free function removeOutliersRANSAC
 INFO:root:create wrapper for free function writable

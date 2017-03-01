@@ -82,14 +82,14 @@ RUN cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCM
 ENV LD_LIBRARY_PATH /home/user/openms-build/lib/:$LD_LIBRARY_PATH
 
 # build pyopenms
-#RUN make pyopenms
+RUN make pyopenms
 
 # install pyopenms
-#WORKDIR /pyOpenMS
-#RUN python setup.py install
+WORKDIR /pyOpenMS
+RUN python setup.py install
 
 # add openms to the PATH
-#ENV PATH /home/user/openms-build/bin/:$PATH
+ENV PATH /home/user/openms-build/bin/:$PATH
 
 # switch back to user
 WORKDIR $HOME
