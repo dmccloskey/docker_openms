@@ -52,6 +52,7 @@ ENV PATH /home/user/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
 RUN pip3 install --no-cache-dir \
 		autowrap \
 		nose \
+                wheel \
 	&&pip3 install --upgrade
 
 # Clone the repository
@@ -68,7 +69,7 @@ RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
 WORKDIR /home/user/
 RUN git clone https://github.com/OpenMS/OpenMS.git
 WORKDIR /home/user/OpenMS/
-RUN git checkout tags/Release2.0.0
+RUN git checkout tags/Release2.1.0
 WORKDIR /home/user/
 RUN mkdir openms-build
 WORKDIR /home/user/openms-build/
@@ -78,15 +79,16 @@ RUN cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCM
   make 
   #  ctest
 
-# add openms to the list libraries
-ENV LD_LIBRARY_PATH /home/user/openms-build/lib/:$LD_LIBRARY_PATH
+## add openms to the list libraries
+#ENV LD_LIBRARY_PATH /home/user/openms-build/lib/:$LD_LIBRARY_PATH
 
-# build pyopenms
-RUN make pyopenms
+## build pyopenms
+#RUN make pyopenms
 
-# install pyopenms
-WORKDIR /pyOpenMS
-RUN python setup.py install
+## install pyopenms
+#WORKDIR /pyOpenMS
+#RUN python setup.py install
+RUN easy_install pyopenms
 
 # add openms to the PATH
 ENV PATH /home/user/openms-build/bin/:$PATH
