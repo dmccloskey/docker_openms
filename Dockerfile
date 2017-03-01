@@ -54,6 +54,7 @@ RUN pip3 install --no-cache-dir \
 		nose \
 	&&pip3 install --upgrade
 
+# Clone the repository
 RUN git clone https://github.com/OpenMS/contrib.git && \
     mkdir /home/user/contrib-build/
 
@@ -65,30 +66,30 @@ RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
     cmake -DBUILD_TYPE=EIGEN ../contrib
 
 WORKDIR /home/user/
-
 RUN git clone https://github.com/OpenMS/OpenMS.git
-
 WORKDIR /home/user/OpenMS/
-
 RUN git checkout tags/Release2.0.0
-
 WORKDIR /home/user/
-
 RUN mkdir openms-build
-
 WORKDIR /home/user/openms-build/
 
+# build the openms executables
 RUN cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/home/user/contrib-build/;/home/user/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
   make 
   #  ctest
 
-RUN make pyopenms
+# add openms to the list libraries
+ENV LD_LIBRARY_PATH /home/user/openms-build/lib/:$LD_LIBRARY_PATH
 
-WORKDIR /pyOpenMS
+# build pyopenms
+#RUN make pyopenms
 
-RUN python setup.py install
+# install pyopenms
+#WORKDIR /pyOpenMS
+#RUN python setup.py install
 
-ENV PATH /home/user/openms-build/bin/:$PATH
+# add openms to the PATH
+#ENV PATH /home/user/openms-build/bin/:$PATH
 
 # switch back to user
 WORKDIR $HOME
