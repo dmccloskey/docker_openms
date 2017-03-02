@@ -86,7 +86,7 @@ ENV LD_LIBRARY_PATH /home/user/openms-build/lib/:$LD_LIBRARY_PATH
 RUN make pyopenms
 
 # install pyopenms
-WORKDIR /pyOpenMS
+WORKDIR /home/user/openms-build/pyOpenMS/
 RUN python setup.py install
 
 # add openms to the PATH
