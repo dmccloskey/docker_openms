@@ -5,6 +5,7 @@ Ubuntu 14.04
 Docker 1.13.1
 Dockerfile: https://github.com/dmccloskey/docker_openms/Dockerfile
 Dockerfile version: 40c0475 master
+Python 3.5.1
 Error: https://github.com/dmccloskey/docker_openms/pyOpenMS/pyopenms_error
 
 
