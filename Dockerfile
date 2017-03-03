@@ -35,7 +35,8 @@ RUN apt-get -y update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Change to working dir
-WORKDIR /home/user/
+#WORKDIR /home/user/ #files downloaded to home folder appear not to persist!
+WORKDIR /usr/local/
 
 ## Install ProteoWizard
 
@@ -44,7 +45,7 @@ RUN ZIP=pwiz-bin-linux-x86_64-gcc48-release-3_0_9740.zip && \
     unzip /tmp/$ZIP -d /home/user/pwiz/ && \
     chmod -R 755 /home/user/pwiz/* && \
     rm /tmp/$ZIP
-ENV PATH /home/user/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
+ENV PATH /usr/local/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
 
 ## Install OpenMS with pyopenms
 
@@ -57,40 +58,40 @@ RUN pip3 install --no-cache-dir \
 
 # Clone the repository
 RUN git clone https://github.com/OpenMS/contrib.git && \
-    mkdir /home/user/contrib-build/
+    mkdir /usr/local/contrib-build/
 
 # Change wordir to start building
-WORKDIR /home/user/contrib-build/
+WORKDIR /usr/local/contrib-build/
 
 RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
     cmake -DBUILD_TYPE=WILDMAGIC ../contrib && \
     cmake -DBUILD_TYPE=EIGEN ../contrib
 
-WORKDIR /home/user/
+WORKDIR /usr/local/
 RUN git clone https://github.com/OpenMS/OpenMS.git
-WORKDIR /home/user/OpenMS/
+WORKDIR /usr/local/OpenMS/
 RUN git checkout tags/Release2.1.0
-WORKDIR /home/user/
+WORKDIR /usr/local/
 RUN mkdir openms-build
-WORKDIR /home/user/openms-build/
+WORKDIR /usr/local/openms-build/
 
 # build the openms executables
-RUN cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/home/user/contrib-build/;/home/user/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
+RUN cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
   make 
   #  ctest
 
 # add openms to the list libraries
-ENV LD_LIBRARY_PATH /home/user/openms-build/lib/:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
 
 # build pyopenms
 RUN make pyopenms
 
 # install pyopenms
-WORKDIR /home/user/openms-build/pyOpenMS/
+WORKDIR /usr/local/openms-build/pyOpenMS/
 RUN python setup.py install
 
 # add openms to the PATH
-ENV PATH /home/user/openms-build/bin/:$PATH
+ENV PATH /usr/local/openms-build/bin/:$PATH
 
 # switch back to user
 WORKDIR $HOME
