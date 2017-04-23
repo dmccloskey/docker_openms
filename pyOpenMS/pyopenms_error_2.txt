@@ -1,0 +1,367 @@
+
+Autwrap has wrapped 492 classes, 4987 methods and 73 enums
+created pyopenms.cpp
+copied files needed for distribution to pyopenms/
+
+
+[100%] Built target pyopenms_create_cpp
+Scanning dependencies of target pyopenms
+running build_ext
+building 'pyopenms' extension
+creating build
+creating build/temp.linux-x86_64-3.6
+creating build/temp.linux-x86_64-3.6/pyopenms
+gcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -Iextra_includes
+-I/usr/local/lib/python3.6/site-packages/numpy/core/include -I/usr/local/OpenMS/src/openswathalgo/include -I/usr/local/o
+penms-build/src/openswathalgo/include -I/usr/include -I/usr/local/OpenMS/src/openms/include -I/usr/local/openms-build/sr
+c/openms/include -I/usr/include/qt4/QtDesigner -I/usr/include/qt4/QtDeclarative -I/usr/include/qt4/QtScriptTools -I/usr/
+include/qt4/QtDBus -I/usr/include/qt4/QtDesigner -I/usr/include/qt4/QtXml -I/usr/include/qt4/QtSql -I/usr/include/qt4/Qt
+OpenGL -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtXmlPatterns -I/usr/include/qt4/QtWebKit -I/usr/include/qt4/QtHe
+lp -I/usr/include/qt4/QtUiTools -I/usr/include/qt4/QtTest -I/usr/include/qt4/QtScript -I/usr/include/qt4/QtSvg -I/usr/in
+clude/qt4/Qt3Support -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtCore -I/usr/share/qt4/mkspecs/default -I/usr/include/
+qt4 -I/usr/include/qt4/QtCore -I/usr/include -I/usr/local/contrib-build/include -I/usr/include -I/usr/include/libsvm -I/
+usr/include -I/usr/include -I/usr/include -I/usr/local/contrib-build/include/eigen3 -I/usr/local/contrib-build/include/W
+ildMagic -I/usr/local/OpenMS/src/openswathalgo/include -I/usr/local/openms-build/src/openswathalgo/include -I/usr/includ
+e -I/usr/include -I/usr/local/OpenMS/src/superhirn/include -I/usr/local/openms-build/src/superhirn/include -I/usr/includ
+e -I/usr/local/OpenMS/src/openms/include -I/usr/local/openms-build/src/openms/include -I/usr/include/qt4/QtDesigner -I/u
+sr/include/qt4/QtDeclarative -I/usr/include/qt4/QtScriptTools -I/usr/include/qt4/QtDBus -I/usr/include/qt4/QtDesigner -I
+/usr/include/qt4/QtXml -I/usr/include/qt4/QtSql -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtNetwork -I/usr/include/
+qt4/QtXmlPatterns -I/usr/include/qt4/QtWebKit -I/usr/include/qt4/QtHelp -I/usr/include/qt4/QtUiTools -I/usr/include/qt4/
+QtTest -I/usr/include/qt4/QtScript -I/usr/include/qt4/QtSvg -I/usr/include/qt4/Qt3Support -I/usr/include/qt4/QtGui -I/us
+r/include/qt4/QtCore -I/usr/share/qt4/mkspecs/default -I/usr/include/qt4 -I/usr/include/qt4/QtCore -I/usr/include -I/usr
+/local/contrib-build/include -I/usr/include -I/usr/include/libsvm -I/usr/include -I/usr/include -I/usr/include -I/usr/lo
+cal/contrib-build/include/eigen3 -I/usr/local/contrib-build/include/WildMagic -I/usr/local/OpenMS/src/openswathalgo/incl
+ude -I/usr/local/openms-build/src/openswathalgo/include -I/usr/include -I/usr/include -I/usr/local/lib/python3.6/site-pa
+ckages/autowrap/data_files/autowrap -I/usr/local/OpenMS/src/pyOpenMS/pxds -I/usr/local/include/python3.6m -c pyopenms/py
+openms.cpp -o build/temp.linux-x86_64-3.6/pyopenms/pyopenms.o
+cc1plus: warning: command line option ‘-Wstrict-prototypes’ is valid for C/ObjC but not for C++ [enabled by default]
+In file included from /usr/local/lib/python3.6/site-packages/numpy/core/include/numpy/ndarraytypes.h:1788:0,
+                 from /usr/local/lib/python3.6/site-packages/numpy/core/include/numpy/ndarrayobject.h:18,
+                 from /usr/local/lib/python3.6/site-packages/numpy/core/include/numpy/arrayobject.h:4,
+                 from pyopenms/pyopenms.cpp:461:
+/usr/local/lib/python3.6/site-packages/numpy/core/include/numpy/npy_1_7_deprecated_api.h:15:2: warning: #warning "Using
+deprecated NumPy API, disable it by " "#defining NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION" [-Wcpp]
+ #warning "Using deprecated NumPy API, disable it by " \
+  ^
+In file included from /usr/local/OpenMS/src/openms/include/OpenMS/DATASTRUCTURES/DPosition.h:40:0,
+                 from pyopenms/pyopenms.cpp:468:
+/usr/local/OpenMS/src/openms/include/OpenMS/CONCEPT/PrecisionWrapper.h:107:0: warning: ignoring #pragma clang diagnostic
+ [-Wunknown-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/CONCEPT/PrecisionWrapper.h:108:0: warning: ignoring #pragma clang diagnostic
+ [-Wunknown-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/CONCEPT/PrecisionWrapper.h:110:0: warning: ignoring #pragma clang diagnostic
+ [-Wunknown-pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from pyopenms/pyopenms.cpp:468:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/DATASTRUCTURES/DPosition.h:183:0: warning: ignoring #pragma clang diagnostic
+ [-Wunknown-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/DATASTRUCTURES/DPosition.h:184:0: warning: ignoring #pragma clang diagnostic
+ [-Wunknown-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/DATASTRUCTURES/DPosition.h:187:0: warning: ignoring #pragma clang diagnostic
+ [-Wunknown-pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from pyopenms/pyopenms.cpp:486:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/Peak1D.h:171:0: warning: ignoring #pragma clang diagnostic [-Wunknown
+-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/Peak1D.h:172:0: warning: ignoring #pragma clang diagnostic [-Wunknown
+-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/Peak1D.h:174:0: warning: ignoring #pragma clang diagnostic [-Wunknown
+-pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from /usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/RichPeak2D.h:38:0,
+                 from /usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/BaseFeature.h:38,
+                 from /usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/Feature.h:39,
+                 from pyopenms/pyopenms.cpp:491:
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/Peak2D.h:236:0: warning: ignoring #pragma clang diagnostic [-Wunknown
+-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/Peak2D.h:237:0: warning: ignoring #pragma clang diagnostic [-Wunknown
+-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/Peak2D.h:239:0: warning: ignoring #pragma clang diagnostic [-Wunknown
+-pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from pyopenms/pyopenms.cpp:492:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/METADATA/ProteinHit.h:69:0: warning: ignoring #pragma clang diagnostic [-Wun
+known-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/METADATA/ProteinHit.h:70:0: warning: ignoring #pragma clang diagnostic [-Wun
+known-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/METADATA/ProteinHit.h:72:0: warning: ignoring #pragma clang diagnostic [-Wun
+known-pragmas]
+ #pragma clang diagnostic pop
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/METADATA/ProteinHit.h:88:0: warning: ignoring #pragma clang diagnostic [-Wun
+known-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/METADATA/ProteinHit.h:89:0: warning: ignoring #pragma clang diagnostic [-Wun
+known-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/METADATA/ProteinHit.h:91:0: warning: ignoring #pragma clang diagnostic [-Wun
+known-pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from pyopenms/pyopenms.cpp:513:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/MSSpectrum.h:210:0: warning: ignoring #pragma clang diagnostic [-Wunk
+nown-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/MSSpectrum.h:211:0: warning: ignoring #pragma clang diagnostic [-Wunk
+nown-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/MSSpectrum.h:222:0: warning: ignoring #pragma clang diagnostic [-Wunk
+nown-pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from pyopenms/pyopenms.cpp:515:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/ChromatogramPeak.h:180:0: warning: ignoring #pragma clang diagnostic
+[-Wunknown-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/ChromatogramPeak.h:181:0: warning: ignoring #pragma clang diagnostic
+[-Wunknown-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/KERNEL/ChromatogramPeak.h:183:0: warning: ignoring #pragma clang diagnostic
+[-Wunknown-pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from pyopenms/pyopenms.cpp:546:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/CHEMISTRY/MASSDECOMPOSITION/IMS/IMSIsotopeDistribution.h:110:0: warning: ign
+oring #pragma clang diagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/CHEMISTRY/MASSDECOMPOSITION/IMS/IMSIsotopeDistribution.h:111:0: warning: ign
+oring #pragma clang diagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/CHEMISTRY/MASSDECOMPOSITION/IMS/IMSIsotopeDistribution.h:113:0: warning: ign
+oring #pragma clang diagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from pyopenms/pyopenms.cpp:552:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/TRANSFORMATIONS/FEATUREFINDER/InterpolationModel.h:146:0: warning: ignoring
+#pragma clang diagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/TRANSFORMATIONS/FEATUREFINDER/InterpolationModel.h:147:0: warning: ignoring
+#pragma clang diagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic ignored "-Wconversion"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/TRANSFORMATIONS/FEATUREFINDER/InterpolationModel.h:149:0: warning: ignoring
+#pragma clang diagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from pyopenms/pyopenms.cpp:623:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/FORMAT/MzTab.h:46:0: warning: ignoring #pragma clang diagnostic [-Wunknown-p
+ragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/FORMAT/MzTab.h:47:0: warning: ignoring #pragma clang diagnostic [-Wunknown-p
+ragmas]
+ #pragma clang diagnostic ignored "-Wnon-virtual-dtor"
+ ^
+In file included from pyopenms/pyopenms.cpp:623:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/FORMAT/MzTab.h:761:0: warning: ignoring #pragma clang diagnostic [-Wunknown-
+pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from /usr/local/OpenMS/src/openms/include/OpenMS/COMPARISON/SPECTRA/BinnedSpectrum.h:40:0,
+                 from pyopenms/pyopenms.cpp:633:
+/usr/local/OpenMS/src/openms/include/OpenMS/DATASTRUCTURES/SparseVector.h:126:0: warning: ignoring #pragma clang diagnos
+tic [-Wunknown-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/DATASTRUCTURES/SparseVector.h:127:0: warning: ignoring #pragma clang diagnos
+tic [-Wunknown-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/DATASTRUCTURES/SparseVector.h:129:0: warning: ignoring #pragma clang diagnos
+tic [-Wunknown-pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from pyopenms/pyopenms.cpp:633:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/COMPARISON/SPECTRA/BinnedSpectrum.h:134:0: warning: ignoring #pragma clang d
+iagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/COMPARISON/SPECTRA/BinnedSpectrum.h:135:0: warning: ignoring #pragma clang d
+iagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/COMPARISON/SPECTRA/BinnedSpectrum.h:140:0: warning: ignoring #pragma clang d
+iagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic pop
+ ^
+In file included from pyopenms/pyopenms.cpp:635:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/TRANSFORMATIONS/FEATUREFINDER/IsotopeWaveletTransform.h:58:0: warning: ignor
+ing #pragma clang diagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic push
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/TRANSFORMATIONS/FEATUREFINDER/IsotopeWaveletTransform.h:59:0: warning: ignor
+ing #pragma clang diagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic ignored "-Wfloat-equal"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/TRANSFORMATIONS/FEATUREFINDER/IsotopeWaveletTransform.h:60:0: warning: ignor
+ing #pragma clang diagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic ignored "-Wconversion"
+ ^
+/usr/local/OpenMS/src/openms/include/OpenMS/TRANSFORMATIONS/FEATUREFINDER/IsotopeWaveletTransform.h:61:0: warning: ignor
+ing #pragma clang diagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic ignored "-Wshorten-64-to-32"
+ ^
+In file included from pyopenms/pyopenms.cpp:635:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/TRANSFORMATIONS/FEATUREFINDER/IsotopeWaveletTransform.h:2210:0: warning: ign
+oring #pragma clang diagnostic [-Wunknown-pragmas]
+ #pragma clang diagnostic pop
+ ^
+pyopenms/pyopenms.cpp: In function ‘PyObject* __pyx_pf_8pyopenms_8pyopenms_20ChromatogramSpectrum_30__getitem__(__pyx_ob
+j_8pyopenms_8pyopenms_ChromatogramSpectrum*, PyObject*)’:
+pyopenms/pyopenms.cpp:154603:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_1 = ((__pyx_v__idx >= __pyx_t_5) != 0);
+                                 ^
+pyopenms/pyopenms.cpp: In function ‘PyObject* __pyx_pf_8pyopenms_8pyopenms_11DataFilters_6__getitem__(__pyx_obj_8pyopenm
+s_8pyopenms_DataFilters*, PyObject*)’:
+pyopenms/pyopenms.cpp:259661:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_1 = ((__pyx_v__idx >= __pyx_t_7) != 0);
+                                 ^
+pyopenms/pyopenms.cpp: In function ‘PyObject* __pyx_pf_8pyopenms_8pyopenms_14FloatDataArray_56__getitem__(__pyx_obj_8pyo
+penms_8pyopenms_FloatDataArray*, PyObject*)’:
+pyopenms/pyopenms.cpp:356158:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_1 = ((__pyx_v__idx >= __pyx_t_5) != 0);
+                                 ^
+pyopenms/pyopenms.cpp: In function ‘int __pyx_pf_8pyopenms_8pyopenms_14FloatDataArray_58__setitem__(__pyx_obj_8pyopenms_
+8pyopenms_FloatDataArray*, PyObject*, PyObject*)’:
+pyopenms/pyopenms.cpp:356375:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_1 = ((__pyx_v__idx >= __pyx_t_5) != 0);
+                                 ^
+pyopenms/pyopenms.cpp: In function ‘PyObject* __pyx_pf_8pyopenms_8pyopenms_16IntegerDataArray_56__getitem__(__pyx_obj_8p
+yopenms_8pyopenms_IntegerDataArray*, PyObject*)’:
+pyopenms/pyopenms.cpp:480624:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_1 = ((__pyx_v__idx >= __pyx_t_5) != 0);
+                                 ^
+pyopenms/pyopenms.cpp: In function ‘int __pyx_pf_8pyopenms_8pyopenms_16IntegerDataArray_58__setitem__(__pyx_obj_8pyopenm
+s_8pyopenms_IntegerDataArray*, PyObject*, PyObject*)’:
+pyopenms/pyopenms.cpp:480831:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_1 = ((__pyx_v__idx >= __pyx_t_5) != 0);
+                                 ^
+pyopenms/pyopenms.cpp: In function ‘PyObject* __pyx_pf_8pyopenms_8pyopenms_10MSSpectrum_30__getitem__(__pyx_obj_8pyopenm
+s_8pyopenms_MSSpectrum*, PyObject*)’:
+pyopenms/pyopenms.cpp:629129:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_1 = ((__pyx_v__idx >= __pyx_t_5) != 0);
+                                 ^
+pyopenms/pyopenms.cpp: In function ‘PyObject* __pyx_pf_8pyopenms_8pyopenms_14RichMSSpectrum_30__getitem__(__pyx_obj_8pyo
+penms_8pyopenms_RichMSSpectrum*, PyObject*)’:
+pyopenms/pyopenms.cpp:996499:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_1 = ((__pyx_v__idx >= __pyx_t_5) != 0);
+                                 ^
+pyopenms/pyopenms.cpp: In function ‘PyObject* __pyx_pf_8pyopenms_8pyopenms_15StringDataArray_56__getitem__(__pyx_obj_8py
+openms_8pyopenms_StringDataArray*, PyObject*)’:
+pyopenms/pyopenms.cpp:1104069:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_1 = ((__pyx_v__idx >= __pyx_t_5) != 0);
+                                 ^
+pyopenms/pyopenms.cpp: In function ‘int __pyx_pf_8pyopenms_8pyopenms_15StringDataArray_58__setitem__(__pyx_obj_8pyopenms
+_8pyopenms_StringDataArray*, PyObject*, PyObject*)’:
+pyopenms/pyopenms.cpp:1104296:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_1 = ((__pyx_v__idx >= __pyx_t_5) != 0);
+                                 ^
+pyopenms/pyopenms.cpp: In function ‘std::vector<long unsigned int> __pyx_convert_vector_from_py_size_t(PyObject*)’:
+pyopenms/pyopenms.cpp:1186329:81: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_v_item); if (unlikely(__pyx_t_5 == -1L && PyErr_Occurred())) __PYX_ERR(2, 5
+2, __pyx_L1_error)
+                                                                                 ^
+pyopenms/pyopenms.cpp:1056:43: note: in definition of macro ‘unlikely’
+   #define unlikely(x) __builtin_expect(!!(x), 0)
+                                           ^
+pyopenms/pyopenms.cpp: In function ‘std::vector<unsigned int> __pyx_convert_vector_from_py_unsigned_int(PyObject*)’:
+pyopenms/pyopenms.cpp:1186559:87: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     __pyx_t_5 = __Pyx_PyInt_As_unsigned_int(__pyx_v_item); if (unlikely(__pyx_t_5 == -1 && PyErr_Occurred())) __PYX_ERR
+(2, 52, __pyx_L1_error)
+                                                                                       ^
+pyopenms/pyopenms.cpp:1056:43: note: in definition of macro ‘unlikely’
+   #define unlikely(x) __builtin_expect(!!(x), 0)
+                                           ^
+pyopenms/pyopenms.cpp: In function ‘std::set<unsigned int> __pyx_convert_set_from_py_unsigned_int(PyObject*)’:
+pyopenms/pyopenms.cpp:1186915:87: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     __pyx_t_5 = __Pyx_PyInt_As_unsigned_int(__pyx_v_item); if (unlikely(__pyx_t_5 == -1 && PyErr_Occurred())) __PYX_ERR
+(2, 123, __pyx_L1_error)
+                                                                                       ^
+pyopenms/pyopenms.cpp:1056:43: note: in definition of macro ‘unlikely’
+   #define unlikely(x) __builtin_expect(!!(x), 0)
+                                           ^
+pyopenms/pyopenms.cpp: In function ‘std::pair<long unsigned int, double> __pyx_convert_pair_from_py_size_t__and_double(P
+yObject*)’:
+pyopenms/pyopenms.cpp:1187312:76: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_v_x); if (unlikely(__pyx_t_5 == -1L && PyErr_Occurred())) __PYX_ERR(2, 165, _
+_pyx_L1_error)
+                                                                            ^
+pyopenms/pyopenms.cpp:1056:43: note: in definition of macro ‘unlikely’
+   #define unlikely(x) __builtin_expect(!!(x), 0)
+                                           ^
+pyopenms/pyopenms.cpp: In function ‘std::pair<long unsigned int, long unsigned int> __pyx_convert_pair_from_py_size_t__a
+nd_size_t(PyObject*)’:
+pyopenms/pyopenms.cpp:1188064:76: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_v_x); if (unlikely(__pyx_t_5 == -1L && PyErr_Occurred())) __PYX_ERR(2, 165, _
+_pyx_L1_error)
+                                                                            ^
+pyopenms/pyopenms.cpp:1056:43: note: in definition of macro ‘unlikely’
+   #define unlikely(x) __builtin_expect(!!(x), 0)
+                                           ^
+pyopenms/pyopenms.cpp:1188065:76: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   __pyx_t_6 = __Pyx_PyInt_As_size_t(__pyx_v_y); if (unlikely(__pyx_t_6 == -1L && PyErr_Occurred())) __PYX_ERR(2, 165, _
+_pyx_L1_error)
+                                                                            ^
+pyopenms/pyopenms.cpp:1056:43: note: in definition of macro ‘unlikely’
+   #define unlikely(x) __builtin_expect(!!(x), 0)
+                                           ^
+pyopenms/pyopenms.cpp: In function ‘std::set<long unsigned int> __pyx_convert_set_from_py_size_t(PyObject*)’:
+pyopenms/pyopenms.cpp:1188567:81: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     __pyx_t_5 = __Pyx_PyInt_As_size_t(__pyx_v_item); if (unlikely(__pyx_t_5 == -1L && PyErr_Occurred())) __PYX_ERR(2, 1
+23, __pyx_L1_error)
+                                                                                 ^
+pyopenms/pyopenms.cpp:1056:43: note: in definition of macro ‘unlikely’
+   #define unlikely(x) __builtin_expect(!!(x), 0)
+                                           ^
+In file included from pyopenms/pyopenms.cpp:823:0:
+/usr/local/OpenMS/src/openms/include/OpenMS/TRANSFORMATIONS/RAW2PEAK/PeakPickerIterative.h: In instantiation of ‘void Op
+enMS::PeakPickerIterative::pick(const OpenMS::MSSpectrum<PeakT>&, OpenMS::MSSpectrum<PeakT>&) [with PeakType = OpenMS::P
+eak1D]’:
+/usr/local/OpenMS/src/openms/include/OpenMS/TRANSFORMATIONS/RAW2PEAK/PeakPickerIterative.h:426:49:   required from here
+/usr/local/OpenMS/src/openms/include/OpenMS/TRANSFORMATIONS/RAW2PEAK/PeakPickerIterative.h:337:112: warning: narrowing c
+onversion of ‘k’ from ‘OpenMS::Size {aka long unsigned int}’ to ‘int’ inside { } is ill-formed in C++11 [-Wnarrowing]
+           PeakCandidate pc = { /*.index=*/ k, /*.intensity=*/ picked_spectrum[j].getIntensity(), -1, -1, -1, -1};
+                                                                                                                ^
+gcc: internal compiler error: Killed (program cc1plus)
+Please submit a full bug report,
+with preprocessed source if appropriate.
+See <file:///usr/share/doc/gcc-4.8/README.Bugs> for instructions.
+error: command 'gcc' failed with exit status 4
+make[3]: *** [src/pyOpenMS/CMakeFiles/pyopenms] Error 1
+make[2]: *** [src/pyOpenMS/CMakeFiles/pyopenms.dir/all] Error 2
+make[1]: *** [src/pyOpenMS/CMakeFiles/pyopenms.dir/rule] Error 2
+make: *** [pyopenms] Error 2
+The command '/bin/sh -c make pyopenms' returned a non-zero code: 2

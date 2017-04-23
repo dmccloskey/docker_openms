@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  web:
+    image: dmccloskey/docker-openms
+    volumes:
+      - /domccl/"Dropbox (UCSD SBRG)"/Project_FastPeak/openMS_MRMworkflow/:/home/user/openMS_MRMworkflow/
+      - /domccl/GitHub/smartPeak/smartPeak:/home/user/smartPeak
+    ports:
+      - "5858:5858"
+    command: /bin/bash

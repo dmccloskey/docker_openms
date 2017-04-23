@@ -39,7 +39,6 @@ RUN apt-get -y update && \
 WORKDIR /usr/local/
 
 ## Install ProteoWizard
-
 RUN ZIP=pwiz-bin-linux-x86_64-gcc48-release-3_0_9740.zip && \
     wget https://github.com/BioDocker/software-archive/releases/download/proteowizard/$ZIP -O /tmp/$ZIP && \
     unzip /tmp/$ZIP -d /home/user/pwiz/ && \
@@ -48,6 +47,8 @@ RUN ZIP=pwiz-bin-linux-x86_64-gcc48-release-3_0_9740.zip && \
 ENV PATH /usr/local/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
 
 ## Install OpenMS with pyopenms
+# ENV OPENMS_VERSION tags/Release2.1.0 
+ENV OPENMS_VERSION develop
 
 # Install python packages using pip3
 RUN pip3 install --no-cache-dir \
@@ -70,7 +71,7 @@ RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
 WORKDIR /usr/local/
 RUN git clone https://github.com/OpenMS/OpenMS.git
 WORKDIR /usr/local/OpenMS/
-RUN git checkout tags/Release2.1.0
+RUN git checkout ${OPENMS_VERSION}
 WORKDIR /usr/local/
 RUN mkdir openms-build
 WORKDIR /usr/local/openms-build/
@@ -80,7 +81,7 @@ RUN cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCM
   make 
   #  ctest
 
-# add openms to the list libraries
+# add openms to the list of libraries
 ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
 
 # build pyopenms
