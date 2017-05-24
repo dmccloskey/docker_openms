@@ -48,10 +48,10 @@ ENV PATH /usr/local/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
 
 ## Install OpenMS with pyopenms
 # ENV OPENMS_VERSION tags/Release2.1.0 
-ENV OPENMS_VERSION develop
-ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
-# ENV OPENMS_VERSION fix/mrm_pp
-# ENV OPENMS_REPOSITORY https://github.com/hroest/OpenMS.git
+# ENV OPENMS_VERSION develop
+# ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
+ENV OPENMS_VERSION fix/mrm_pp
+ENV OPENMS_REPOSITORY https://github.com/hroest/OpenMS.git
 
 # Install python packages using pip3
 RUN pip3 install --no-cache-dir \
@@ -80,19 +80,22 @@ RUN mkdir openms-build
 WORKDIR /usr/local/openms-build/
 
 # build the openms executables
-RUN cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
+# RUN cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
+#   make 
+#   #  ctest
+RUN cmake -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
   make 
   #  ctest
 
 # add openms to the list of libraries
 ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
 
-# build pyopenms
-RUN make pyopenms
+# # build pyopenms
+# RUN make pyopenms
 
-# install pyopenms
-WORKDIR /usr/local/openms-build/pyOpenMS/
-RUN python setup.py install
+# # install pyopenms
+# WORKDIR /usr/local/openms-build/pyOpenMS/
+# RUN python setup.py install
 
 # add openms to the PATH
 ENV PATH /usr/local/openms-build/bin/:$PATH
