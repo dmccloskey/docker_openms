@@ -50,6 +50,7 @@ ENV PATH /usr/local/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
 # ENV OPENMS_VERSION tags/Release2.1.0 
 # ENV OPENMS_VERSION develop
 # ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
+ENV OPENMS_CONTRIB_VERSION develop
 ENV OPENMS_VERSION fix/mrm_pp
 ENV OPENMS_REPOSITORY https://github.com/hroest/OpenMS.git
 
@@ -66,6 +67,7 @@ RUN git clone https://github.com/OpenMS/contrib.git && \
 
 # Change wordir to start building
 WORKDIR /usr/local/contrib-build/
+RUN git checkout ${OPENMS_CONTRIB_VERSION}
 
 RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
     cmake -DBUILD_TYPE=WILDMAGIC ../contrib && \
