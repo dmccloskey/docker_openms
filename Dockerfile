@@ -48,7 +48,10 @@ ENV PATH /usr/local/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
 
 ## Install OpenMS with pyopenms
 # ENV OPENMS_VERSION tags/Release2.1.0 
-ENV OPENMS_VERSION develop
+# ENV OPENMS_VERSION develop
+# ENV OPENMS_REPOSITORY https://github.com/OpenMS/contrib.git
+ENV OPENMS_VERSION fix/mrm_pp
+ENV OPENMS_REPOSITORY https://github.com/hroest/OpenMS.git
 
 # Install python packages using pip3
 RUN pip3 install --no-cache-dir \
@@ -69,7 +72,7 @@ RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
     cmake -DBUILD_TYPE=EIGEN ../contrib
 
 WORKDIR /usr/local/
-RUN git clone https://github.com/OpenMS/OpenMS.git
+RUN git clone ${OPENMS_REPOSITORY}
 WORKDIR /usr/local/OpenMS/
 RUN git checkout ${OPENMS_VERSION}
 WORKDIR /usr/local/
