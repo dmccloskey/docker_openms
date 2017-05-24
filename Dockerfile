@@ -72,7 +72,7 @@ WORKDIR /usr/local/contrib-build/
 
 RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
     cmake -DBUILD_TYPE=WILDMAGIC ../contrib && \
-    cmake -DBUILD_TYPE=EIGEN ../contrib
+    cmake -DBUILD_TYPE=EIGEN ../contrib && \
     cmake -DBUILD_TYPE=COINOR ../contrib
 
 WORKDIR /usr/local/
