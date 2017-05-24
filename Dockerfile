@@ -63,11 +63,12 @@ RUN pip3 install --no-cache-dir \
 
 # Clone the repository
 RUN git clone https://github.com/OpenMS/contrib.git && \
+    cd /usr/local/contrib && \
+    git checkout ${OPENMS_CONTRIB_VERSION} && \
     mkdir /usr/local/contrib-build/
 
 # Change wordir to start building
 WORKDIR /usr/local/contrib-build/
-RUN git checkout ${OPENMS_CONTRIB_VERSION}
 
 RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
     cmake -DBUILD_TYPE=WILDMAGIC ../contrib && \
