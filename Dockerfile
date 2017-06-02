@@ -47,13 +47,6 @@ RUN ZIP=pwiz-bin-linux-x86_64-gcc48-release-3_0_9740.zip && \
 ENV PATH /usr/local/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
 
 ## Install OpenMS with pyopenms
-# ENV OPENMS_VERSION tags/Release2.1.0 
-# ENV OPENMS_VERSION develop
-# ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
-ENV OPENMS_CONTRIB_VERSION master
-# ENV OPENMS_VERSION fix/mrm_pp
-ENV OPENMS_VERSION feature/mrm_trgroup
-ENV OPENMS_REPOSITORY https://github.com/hroest/OpenMS.git
 
 # Install python packages using pip3
 RUN pip3 install --no-cache-dir \
@@ -63,6 +56,7 @@ RUN pip3 install --no-cache-dir \
 	&&pip3 install --upgrade
 
 # Clone the repository
+ENV OPENMS_CONTRIB_VERSION master
 RUN git clone https://github.com/OpenMS/contrib.git && \
     cd /usr/local/contrib && \
     git checkout ${OPENMS_CONTRIB_VERSION} && \
@@ -76,6 +70,14 @@ RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
     cmake -DBUILD_TYPE=EIGEN ../contrib && \
     cmake -DBUILD_TYPE=COINOR ../contrib
 
+
+# ENV OPENMS_VERSION tags/Release2.1.0 
+# ENV OPENMS_VERSION develop
+# ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
+# ENV OPENMS_VERSION fix/mrm_pp
+ENV OPENMS_VERSION feature/mrm_trgroup
+ENV OPENMS_REPOSITORY https://github.com/hroest/OpenMS.git
+
 WORKDIR /usr/local/
 RUN git clone ${OPENMS_REPOSITORY}
 WORKDIR /usr/local/OpenMS/
@@ -85,10 +87,10 @@ RUN mkdir openms-build
 WORKDIR /usr/local/openms-build/
 
 # build the openms executables
-# #Release
-# RUN cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
-#Debug
-RUN cmake -DCMAKE_BUILD_TYPE=Debug -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
+#Release
+RUN cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
+# #Debug
+# RUN cmake -DCMAKE_BUILD_TYPE=Debug -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
   make 
   #  ctest
 
