@@ -10,10 +10,19 @@ LABEL maintainer Douglas McCloskey <dmccloskey87@gmail.com>
 # Switch to root for install
 USER root
 
+# OpenMS versions
+ENV OPENMS_CONTRIB_VERSION master
+# ENV OPENMS_VERSION tags/Release2.1.0 
+# ENV OPENMS_VERSION develop
+# ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
+# ENV OPENMS_VERSION fix/mrm_pp
+ENV OPENMS_VERSION feature/mrm_trgroup
+ENV OPENMS_REPOSITORY https://github.com/hroest/OpenMS.git
+
 # Instal openMS dependencies
 RUN apt-get -y update && \
     apt-get install -y \
-    cmake \
+    # cmake \
     g++ \
     autoconf \
     qt4-dev-tools \
@@ -32,40 +41,35 @@ RUN apt-get -y update && \
     libbz2-dev && \
     apt-get clean && \
     apt-get purge && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Change to working dir
-#WORKDIR /home/user/ #files downloaded to home folder appear not to persist!
-WORKDIR /usr/local/
-
-## Install ProteoWizard
-RUN ZIP=pwiz-bin-linux-x86_64-gcc48-release-3_0_9740.zip && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    # install cmake from source
+    cd /usr/local/ && \
+    wget http://www.cmake.org/files/v3.2/cmake-3.2.2.tar.gz && \
+    tar xf cmake-3.2.2.tar.gz && \
+    cd cmake-3.2.2 && \
+    ./configure && \
+    make && \
+    # install proteowizard
+    cd /usr/local/  && \
+    ZIP=pwiz-bin-linux-x86_64-gcc48-release-3_0_9740.zip && \
     wget https://github.com/BioDocker/software-archive/releases/download/proteowizard/$ZIP -O /tmp/$ZIP && \
     unzip /tmp/$ZIP -d /home/user/pwiz/ && \
     chmod -R 755 /home/user/pwiz/* && \
-    rm /tmp/$ZIP
-ENV PATH /usr/local/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
-
-## Install OpenMS with pyopenms
-
-# Install python packages using pip3
-RUN pip3 install --no-cache-dir \
-		autowrap \
-		nose \
-                wheel \
-	&&pip3 install --upgrade
-
-# Clone the repository
-ENV OPENMS_CONTRIB_VERSION master
-RUN git clone https://github.com/OpenMS/contrib.git && \
+    rm /tmp/$ZIP && \
+    # Install python packages using pip3
+    pip3 install --no-cache-dir \
+        autowrap \
+        nose \
+        wheel \
+    &&pip3 install --upgrade && \
+    # Clone the OpenMS/contrib repository
+    git clone https://github.com/OpenMS/contrib.git && \
     cd /usr/local/contrib && \
     git checkout ${OPENMS_CONTRIB_VERSION} && \
-    mkdir /usr/local/contrib-build/
-
-# Change wordir to start building
-WORKDIR /usr/local/contrib-build/
-
-RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
+    mkdir /usr/local/contrib-build/  && \
+    # Build OpenMS/contrib
+    cd /usr/local/contrib-build/  && \
+    cmake -DBUILD_TYPE=SEQAN ../contrib && \
     cmake -DBUILD_TYPE=WILDMAGIC ../contrib && \
     cmake -DBUILD_TYPE=EIGEN ../contrib && \
     cmake -DBUILD_TYPE=COINOR ../contrib && \
@@ -77,39 +81,33 @@ RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
     cmake -DBUILD_TYPE=XERCESC ../contrib && \
     cmake -DBUILD_TYPE=BOOST ../contrib
 
+# add pwiz to the path
+ENV PATH /usr/local/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
 
-# ENV OPENMS_VERSION tags/Release2.1.0 
-# ENV OPENMS_VERSION develop
-# ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
-# ENV OPENMS_VERSION fix/mrm_pp
-ENV OPENMS_VERSION feature/mrm_trgroup
-ENV OPENMS_REPOSITORY https://github.com/hroest/OpenMS.git
-
-WORKDIR /usr/local/
-RUN git clone ${OPENMS_REPOSITORY}
-WORKDIR /usr/local/OpenMS/
-RUN git checkout ${OPENMS_VERSION}
-WORKDIR /usr/local/
-RUN mkdir openms-build
-WORKDIR /usr/local/openms-build/
-
-# build the openms executables
-#Release
-RUN cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
-# #Debug
-# RUN cmake -DCMAKE_BUILD_TYPE=Debug -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
-  make 
-  #  ctest
+# clone the OpenMS repository
+RUN cd /usr/local/ && \
+    git clone ${OPENMS_REPOSITORY} && \
+    cd /usr/local/OpenMS/ && \
+    git checkout ${OPENMS_VERSION} && \
+    cd /usr/local/ && \
+    mkdir openms-build && \
+    cd /usr/local/openms-build/ && \
+    # build the OpenMS executables
+    #Release
+    cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
+    # #Debug
+    # RUN cmake -DCMAKE_BUILD_TYPE=Debug -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
+    make 
+    #  ctest
 
 # add openms to the list of libraries
 ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
 
 # build pyopenms
-RUN make pyopenms
-
-# install pyopenms
-WORKDIR /usr/local/openms-build/pyOpenMS/
-RUN python setup.py install
+RUN make pyopenms && \
+    cd /usr/local/openms-build/pyOpenMS/ && \
+    # install pyopenms
+    python setup.py install
 
 # add openms to the PATH
 ENV PATH /usr/local/openms-build/bin/:$PATH
