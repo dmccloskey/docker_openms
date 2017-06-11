@@ -68,7 +68,14 @@ WORKDIR /usr/local/contrib-build/
 RUN cmake -DBUILD_TYPE=SEQAN ../contrib && \
     cmake -DBUILD_TYPE=WILDMAGIC ../contrib && \
     cmake -DBUILD_TYPE=EIGEN ../contrib && \
-    cmake -DBUILD_TYPE=COINOR ../contrib
+    cmake -DBUILD_TYPE=COINOR ../contrib && \
+    cmake -DBUILD_TYPE=ZLIB ../contrib && \
+    cmake -DBUILD_TYPE=BZIP2 ../contrib && \
+    cmake -DBUILD_TYPE=GLPK ../contrib && \
+    cmake -DBUILD_TYPE=LIBSVM ../contrib && \
+    cmake -DBUILD_TYPE=SQLITE ../contrib && \
+    cmake -DBUILD_TYPE=XERCESC ../contrib && \
+    cmake -DBUILD_TYPE=BOOST ../contrib
 
 
 # ENV OPENMS_VERSION tags/Release2.1.0 
