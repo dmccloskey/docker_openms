@@ -44,9 +44,9 @@ RUN apt-get -y update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     # install cmake from source
     cd /usr/local/ && \
-    wget http://www.cmake.org/files/v3.2/cmake-3.2.2.tar.gz && \
-    tar xf cmake-3.2.2.tar.gz && \
-    cd cmake-3.2.2 && \
+    wget http://www.cmake.org/files/v3.8/cmake-3.8.2.tar.gz && \
+    tar xf cmake-3.8.2.tar.gz && \
+    cd cmake-3.8.2 && \
     ./configure && \
     make && \
     # install proteowizard
@@ -61,9 +61,16 @@ RUN apt-get -y update && \
         autowrap \
         nose \
         wheel \
-    &&pip3 install --upgrade && \
-    # Clone the OpenMS/contrib repository
-    git clone https://github.com/OpenMS/contrib.git && \
+    &&pip3 install --upgrade
+
+# add pwiz to the path
+ENV PATH /usr/local/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
+
+# add cmake to the path
+ENV PATH /usr/local/cmake-3.8.2/bin:$PATH
+
+# Clone the OpenMS/contrib repository
+RUN git clone https://github.com/OpenMS/contrib.git && \
     cd /usr/local/contrib && \
     git checkout ${OPENMS_CONTRIB_VERSION} && \
     mkdir /usr/local/contrib-build/  && \
@@ -79,13 +86,9 @@ RUN apt-get -y update && \
     cmake -DBUILD_TYPE=LIBSVM ../contrib && \
     cmake -DBUILD_TYPE=SQLITE ../contrib && \
     cmake -DBUILD_TYPE=XERCESC ../contrib && \
-    cmake -DBUILD_TYPE=BOOST ../contrib
-
-# add pwiz to the path
-ENV PATH /usr/local/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
-
-# clone the OpenMS repository
-RUN cd /usr/local/ && \
+    cmake -DBUILD_TYPE=BOOST ../contrib && \
+    # clone the OpenMS repository
+    cd /usr/local/ && \
     git clone ${OPENMS_REPOSITORY} && \
     cd /usr/local/OpenMS/ && \
     git checkout ${OPENMS_VERSION} && \
