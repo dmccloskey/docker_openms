@@ -70,7 +70,8 @@ ENV PATH /usr/local/pwiz/pwiz-bin-linux-x86_64-gcc48-release-3_0_9740:$PATH
 ENV PATH /usr/local/cmake-3.8.2/bin:$PATH
 
 # Clone the OpenMS/contrib repository
-RUN git clone https://github.com/OpenMS/contrib.git && \
+RUN cd /usr/local/  && \
+    git clone https://github.com/OpenMS/contrib.git && \
     cd /usr/local/contrib && \
     git checkout ${OPENMS_CONTRIB_VERSION} && \
     mkdir /usr/local/contrib-build/  && \
