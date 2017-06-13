@@ -110,7 +110,8 @@ RUN cd /usr/local/  && \
 ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
 
 # build pyopenms
-RUN make pyopenms && \
+RUN cd /usr/local/openms-build/ && \
+    make pyopenms && \
     cd /usr/local/openms-build/pyOpenMS/ && \
     # install pyopenms
     python setup.py install
