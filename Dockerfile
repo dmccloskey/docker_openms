@@ -16,8 +16,10 @@ ENV OPENMS_CONTRIB_VERSION master
 # ENV OPENMS_VERSION develop
 # ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
 # ENV OPENMS_VERSION fix/mrm_pp
-ENV OPENMS_VERSION feature/mrm_trgroup
-ENV OPENMS_REPOSITORY https://github.com/hroest/OpenMS.git
+# ENV OPENMS_VERSION feature/mrm_trgroup
+# ENV OPENMS_REPOSITORY https://github.com/hroest/OpenMS.git
+ENV OPENMS_VERSION develop
+ENV OPENMS_REPOSITORY https://github.com/dmccloskey/OpenMS.git
 
 # Instal openMS dependencies
 RUN apt-get -y update && \
