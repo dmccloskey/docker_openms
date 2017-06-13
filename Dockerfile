@@ -103,7 +103,7 @@ RUN cd /usr/local/  && \
     cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
     # #Debug
     # RUN cmake -DCMAKE_BUILD_TYPE=Debug -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
-    make 
+    make -j 8
     #  ctest
 
 # add openms to the list of libraries
@@ -111,7 +111,7 @@ ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
 
 # build pyopenms
 RUN cd /usr/local/openms-build/ && \
-    make pyopenms && \
+    make -j 8 pyopenms && \
     cd /usr/local/openms-build/pyOpenMS/ && \
     # install pyopenms
     python setup.py install
