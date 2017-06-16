@@ -27,7 +27,7 @@ RUN apt-get -y update && \
     # cmake \
     g++ \
     autoconf \
-    #qt4-dev-tools \
+    qt4-dev-tools \
 	# qtconnectivity5-dev \
 	qtbase5-dev \
 	# qtmobility-dev \
