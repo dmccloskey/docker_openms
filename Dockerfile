@@ -15,11 +15,9 @@ ENV OPENMS_CONTRIB_VERSION master
 # ENV OPENMS_VERSION tags/Release2.1.0 
 # ENV OPENMS_VERSION develop
 # ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
-# ENV OPENMS_VERSION fix/mrm_pp
-ENV OPENMS_VERSION feature/mrm_trgroup
-ENV OPENMS_REPOSITORY https://github.com/hroest/OpenMS.git
+ENV OPENMS_VERSION feature/tm_dataweights
 # ENV OPENMS_VERSION develop
-# ENV OPENMS_REPOSITORY https://github.com/dmccloskey/OpenMS.git
+ENV OPENMS_REPOSITORY https://github.com/dmccloskey/OpenMS.git
 
 # Instal openMS dependencies
 RUN apt-get -y update && \
@@ -113,7 +111,7 @@ RUN cd /usr/local/  && \
     cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
     # #Debug
     # RUN cmake -DCMAKE_BUILD_TYPE=Debug -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
-    make -j 8
+    make -j8
     #  ctest
 
 # add openms to the list of libraries
@@ -121,7 +119,7 @@ ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
 
 # build pyopenms
 RUN cd /usr/local/openms-build/ && \
-    make -j 8 pyopenms && \
+    make -j8 pyopenms && \
     cd /usr/local/openms-build/pyOpenMS/ && \
     # install pyopenms
     python setup.py install
