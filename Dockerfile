@@ -12,11 +12,6 @@ USER root
 
 # OpenMS versions
 ENV OPENMS_CONTRIB_VERSION master
-# ENV OPENMS_VERSION tags/Release2.1.0 
-# ENV OPENMS_VERSION develop
-# ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
-ENV OPENMS_VERSION develop
-ENV OPENMS_REPOSITORY https://github.com/dmccloskey/OpenMS.git
 
 # Instal openMS dependencies
 RUN apt-get -y update && \
@@ -96,35 +91,7 @@ RUN cd /usr/local/  && \
     cmake -DBUILD_TYPE=LIBSVM ../contrib && \
     cmake -DBUILD_TYPE=SQLITE ../contrib && \
     cmake -DBUILD_TYPE=XERCESC ../contrib && \
-    cmake -DBUILD_TYPE=BOOST ../contrib && \
-    # clone the OpenMS repository
-    cd /usr/local/ && \
-    git clone ${OPENMS_REPOSITORY} && \
-    cd /usr/local/OpenMS/ && \
-    git checkout ${OPENMS_VERSION} && \
-    cd /usr/local/ && \
-    mkdir openms-build && \
-    cd /usr/local/openms-build/ && \
-    # build the OpenMS executables
-    #Release
-    cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
-    # #Debug
-    # RUN cmake -DCMAKE_BUILD_TYPE=Debug -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
-    make -j8
-    #  ctest
-
-# add openms to the list of libraries
-ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
-
-# build pyopenms
-RUN cd /usr/local/openms-build/ && \
-    make -j8 pyopenms && \
-    cd /usr/local/openms-build/pyOpenMS/ && \
-    # install pyopenms
-    python setup.py install
-
-# add openms to the PATH
-ENV PATH /usr/local/openms-build/bin/:$PATH
+    cmake -DBUILD_TYPE=BOOST ../contrib
 
 # switch back to user
 WORKDIR $HOME
