@@ -15,8 +15,7 @@ ENV OPENMS_CONTRIB_VERSION master
 # ENV OPENMS_VERSION tags/Release2.1.0 
 # ENV OPENMS_VERSION develop
 # ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
-ENV OPENMS_VERSION feature/tml_dataweights
-# ENV OPENMS_VERSION develop
+ENV OPENMS_VERSION develop
 ENV OPENMS_REPOSITORY https://github.com/dmccloskey/OpenMS.git
 
 # Instal openMS dependencies
