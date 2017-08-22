@@ -11,7 +11,7 @@ LABEL maintainer Douglas McCloskey <dmccloskey87@gmail.com>
 USER root
 
 RUN pip3 install --no-cache-dir \
-		autowrap \
+		autowrap==0.14.0 \
 	&&pip3 install --upgrade 
 
 # OpenMS versions
