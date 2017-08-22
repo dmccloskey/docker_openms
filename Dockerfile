@@ -39,12 +39,12 @@ RUN cd /usr/local/  && \
 # add openms to the list of libraries
 ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
 
-# build pyopenms
-RUN cd /usr/local/openms-build/ && \
-    make -j8 pyopenms && \
-    cd /usr/local/openms-build/pyOpenMS/ && \
-    # install pyopenms
-    python setup.py install
+# # build pyopenms
+# RUN cd /usr/local/openms-build/ && \
+#     make -j8 pyopenms && \
+#     cd /usr/local/openms-build/pyOpenMS/ && \
+#     # install pyopenms
+#     python setup.py install
 
 # add openms to the PATH
 ENV PATH /usr/local/openms-build/bin/:$PATH
