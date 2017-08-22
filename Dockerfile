@@ -11,14 +11,8 @@ LABEL maintainer Douglas McCloskey <dmccloskey87@gmail.com>
 USER root
 
 # OpenMS versions
-<<<<<<< HEAD
-# ENV OPENMS_VERSION tags/Release2.1.0 
-# ENV OPENMS_REPOSITORY https://github.com/OpenMS.git
-ENV OPENMS_VERSION develop
-=======
 ENV OPENMS_VERSION develop
 # ENV OPENMS_VERSION develop
->>>>>>> feature/tml_dataweights
 ENV OPENMS_REPOSITORY https://github.com/dmccloskey/OpenMS.git
 
 RUN cd /usr/local/  && \
