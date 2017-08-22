@@ -10,6 +10,10 @@ LABEL maintainer Douglas McCloskey <dmccloskey87@gmail.com>
 # Switch to root for install
 USER root
 
+RUN pip3 install --no-cache-dir \
+		autowrap \
+	&&pip3 install --upgrade 
+
 # OpenMS versions
 ENV OPENMS_VERSION develop
 # ENV OPENMS_VERSION develop
