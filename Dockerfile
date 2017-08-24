@@ -15,7 +15,7 @@ RUN pip3 install --no-cache-dir \
 	&&pip3 install --upgrade 
 
 # OpenMS versions
-ENV OPENMS_VERSION feature/tml_dataWeights
+ENV OPENMS_VERSION feature/tml_dataweights
 # ENV OPENMS_VERSION develop
 ENV OPENMS_REPOSITORY https://github.com/dmccloskey/OpenMS.git
 
