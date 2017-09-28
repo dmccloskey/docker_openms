@@ -11,7 +11,7 @@ LABEL maintainer Douglas McCloskey <dmccloskey87@gmail.com>
 USER root
 
 # OpenMS versions
-ENV OPENMS_VERSION develop
+ENV OPENMS_VERSION feature/MRMFeatureQC
 ENV OPENMS_REPOSITORY https://github.com/dmccloskey/OpenMS.git
 
 # Instal openMS dependencies
