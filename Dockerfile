@@ -2,7 +2,7 @@
 # Based on Ubuntu
 
 # Add python3_scientific
-FROM dmccloskey/docker-openms-contrib:latest
+FROM dmccloskey/docker-openms-contrib:develop
 
 # File Author / Maintainer
 LABEL maintainer Douglas McCloskey <dmccloskey87@gmail.com>
