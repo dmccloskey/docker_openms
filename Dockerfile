@@ -10,6 +10,16 @@ LABEL maintainer Douglas McCloskey <dmccloskey87@gmail.com>
 # Switch to root for install
 USER root
 
+RUN apt-get -y update && \
+    apt-get install -y --no-install-recommends --no-install-suggests \
+    qtchooser \
+    && \
+    apt-get clean && \
+    apt-get purge && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    export QT_SELECT=qt5 && \
+    export QT_HOME=qt5
+
 RUN pip3 install --no-cache-dir \
 		autowrap==0.14.0 \
 	&&pip3 install --upgrade 
@@ -29,7 +39,7 @@ RUN cd /usr/local/  && \
     # build the OpenMS executables
     #Release
     # cmake -DPYOPENMS=OFF -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
-    cmake -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
+    cmake -DWITH_GUI=OFF -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/include/qt5" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
     # #Debug
     # RUN cmake -DCMAKE_BUILD_TYPE=Debug -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
     make -j8
