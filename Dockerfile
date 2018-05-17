@@ -39,7 +39,8 @@ RUN cd /usr/local/  && \
     # define QT environment
     QT_ENV=$(find /opt -name 'qt*-env.sh') && \
     # build the OpenMS executables
-    /bin/bash -c "source ${QT_ENV} && cmake -DPYOPENMS=OFF -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS" && \
+    # source ${QT_ENV} && cmake -DPYOPENMS=OFF -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
+    /bin/bash -c "source ${QT_ENV} && cmake -DWITH_GUI=OFF -DPYOPENMS=OFF -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH='/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local' -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS" && \
     #Release (no pyopenms)
     # cmake -DPYOPENMS=OFF -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
     #Release (no pyopenms)
@@ -52,12 +53,12 @@ RUN cd /usr/local/  && \
 # add openms to the list of libraries
 ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
 
-# build pyopenms
-RUN cd /usr/local/openms-build/ && \
-    make -j8 pyopenms && \
-    cd /usr/local/openms-build/pyOpenMS/ && \
-    # install pyopenms
-    python setup.py install
+# # build pyopenms
+# RUN cd /usr/local/openms-build/ && \
+#     make -j8 pyopenms && \
+#     cd /usr/local/openms-build/pyOpenMS/ && \
+#     # install pyopenms
+#     python setup.py install
 
 # add openms to the PATH
 ENV PATH /usr/local/openms-build/bin/:$PATH
