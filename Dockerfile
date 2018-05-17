@@ -10,15 +10,15 @@ LABEL maintainer Douglas McCloskey <dmccloskey87@gmail.com>
 # Switch to root for install
 USER root
 
-RUN apt-get -y update && \
-    apt-get install -y --no-install-recommends --no-install-suggests \
-    qtchooser \
-    && \
-    apt-get clean && \
-    apt-get purge && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    export QT_SELECT=qt5 && \
-    export QT_HOME=qt5
+# RUN apt-get -y update && \
+#     apt-get install -y --no-install-recommends --no-install-suggests \
+#     qtchooser \
+#     && \
+#     apt-get clean && \
+#     apt-get purge && \
+#     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+#     export QT_SELECT=qt5 && \
+#     export QT_HOME=qt5
 
 RUN pip3 install --no-cache-dir \
 		autowrap==0.14.0 \
@@ -36,12 +36,16 @@ RUN cd /usr/local/  && \
     cd /usr/local/ && \
     mkdir openms-build && \
     cd /usr/local/openms-build/ && \
+    # define QT environment
+    QT_ENV=$(find /opt -name 'qt*-env.sh') && \
     # build the OpenMS executables
-    #Release
+    /bin/bash -c "source ${QT_ENV} && cmake -DPYOPENMS=OFF -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS" && \
+    #Release (no pyopenms)
     # cmake -DPYOPENMS=OFF -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
-    cmake -DWITH_GUI=OFF -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/include/qt5" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
-    # #Debug
-    # RUN cmake -DCMAKE_BUILD_TYPE=Debug -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
+    #Release (no pyopenms)
+    # cmake -DWITH_GUI=OFF -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/include/qt5" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
+    #Debug
+    # cmake -DCMAKE_BUILD_TYPE=Debug -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
     make -j8
     #  ctest
 
