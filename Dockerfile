@@ -10,16 +10,6 @@ LABEL maintainer Douglas McCloskey <dmccloskey87@gmail.com>
 # Switch to root for install
 USER root
 
-# RUN apt-get -y update && \
-#     apt-get install -y --no-install-recommends --no-install-suggests \
-#     qtchooser \
-#     && \
-#     apt-get clean && \
-#     apt-get purge && \
-#     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-#     export QT_SELECT=qt5 && \
-#     export QT_HOME=qt5
-
 RUN pip3 install --no-cache-dir \
 		autowrap==0.14.0 \
 	&&pip3 install --upgrade 
@@ -40,7 +30,7 @@ RUN cd /usr/local/  && \
     QT_ENV=$(find /opt -name 'qt*-env.sh') && \
     # build the OpenMS executables
     # source ${QT_ENV} && cmake -DPYOPENMS=OFF -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
-    /bin/bash -c "source ${QT_ENV} && cmake -DWITH_GUI=OFF -DPYOPENMS=OFF -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH='/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local' -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS" && \
+    /bin/bash -c "source ${QT_ENV} && cmake -DWITH_GUI=OFF -DPYOPENMS=ON -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH='/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local' -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS" && \
     #Release (no pyopenms)
     # cmake -DPYOPENMS=OFF -DPYTHON_EXECUTABLE:FILEPATH=/usr/local/bin/python3 -DCMAKE_PREFIX_PATH="/usr/local/contrib-build/;/usr/local/contrib/;/usr/;/usr/local" -DBOOST_USE_STATIC=OFF -DHAS_XSERVER=Off ../OpenMS && \
     #Release (no pyopenms)
@@ -53,12 +43,12 @@ RUN cd /usr/local/  && \
 # add openms to the list of libraries
 ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
 
-# # build pyopenms
-# RUN cd /usr/local/openms-build/ && \
-#     make -j8 pyopenms && \
-#     cd /usr/local/openms-build/pyOpenMS/ && \
-#     # install pyopenms
-#     python setup.py install
+# build pyopenms
+RUN cd /usr/local/openms-build/ && \
+    make -j8 pyopenms && \
+    cd /usr/local/openms-build/pyOpenMS/ && \
+    # install pyopenms
+    python setup.py install
 
 # add openms to the PATH
 ENV PATH /usr/local/openms-build/bin/:$PATH
