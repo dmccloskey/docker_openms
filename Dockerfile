@@ -39,16 +39,12 @@ RUN cd /usr/local/  && \
 # add openms to the list of libraries
 ENV LD_LIBRARY_PATH /usr/local/openms-build/lib/:$LD_LIBRARY_PATH
 
-# Install python packages using pip3
-RUN pip3 uninstall -y autowrap \
-    && pip3 install --no-cache-dir autowrap
-
 # build pyopenms
 RUN cd /usr/local/openms-build/ && \
     make -j8 pyopenms && \
     cd /usr/local/openms-build/pyOpenMS/ && \
     # install pyopenms
-    python setup.py install
+    python3 setup.py install
 
 # add openms to the PATH
 ENV PATH /usr/local/openms-build/bin/:$PATH
