@@ -44,7 +44,6 @@ RUN cd /usr/local/openms-build/ && \
     make -j8 pyopenms && \
     cd /usr/local/openms-build/pyOpenMS/ && \
     # install pyopenms
-    pip3 install --no-cache-dir setuptools && \
     python3 setup.py install
 
 # add openms to the PATH
